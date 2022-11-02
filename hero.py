@@ -15,7 +15,7 @@ class Hero:
         else:
             print(f"{opponent.name} defeats {self.name}!")
 
-
+            
 
 if __name__ == "__main__":
   hero1 = Hero("Wonder Woman")
