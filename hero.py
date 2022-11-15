@@ -14,14 +14,17 @@ class Hero:
         self.name = name
         self.starting_health = starting_health
         self.current_health = starting_health
+        # Add deaths and kills which default start at 0
+        self.deaths = 0
+        self.kills = 0
 
-    def random_fight(self, opponent):
-        winner = random.randint(0,1)        
-        #Stretch Goal: fancy message
-        if winner == 1:
-            print(f"{self.name} defeats {opponent.name}!")
-        else:
-            print(f"{opponent.name} defeats {self.name}!")
+    # def random_fight(self, opponent):
+    #     winner = random.randint(0,1)        
+    #     #Stretch Goal: fancy message
+    #     if winner == 1:
+    #         print(f"{self.name} defeats {opponent.name}!")
+    #     else:
+    #         print(f"{opponent.name} defeats {self.name}!")
 
     def add_ability(self, ability):
         self.abilities.append(ability)
@@ -41,16 +44,22 @@ class Hero:
     def add_weapon(self, weapon):
         self.abilities.append(weapon)
 
+    # Add Kill
+    def add_kill(self, num_kills):
+        # update self.kills by num_kills amount
+        self.kills += num_kills
 
-    # TODO: Make sure to take into account that there may not be any armor objects in the list. 
-    # Or that if a hero is dead (has no health) they should have 0 defense.
+    # Add Death
+    def add_death(self, num_deaths):
+        # update self.deaths by num_deaths amount
+        self.deaths += num_deaths
+
     def defend(self):
         total_block = 0
         for armor in self.armors:
             total_block += armor.block()
         return total_block
 
-    # TODO
     def take_damage(self, damage):
         damage_done = damage - self.defend()
         self.current_health -= damage_done
@@ -66,8 +75,8 @@ class Hero:
         else:
             return True
 
-
-    def fight(self, opponent): # Fight each hero until a victor emerges.
+    # Fight each hero until a victor emerges.
+    def fight(self, opponent): 
         fight = True 
         while fight == True:
             damage_done = self.attack()
@@ -75,33 +84,31 @@ class Hero:
             self.take_damage(opponent_damage_done)
             opponent.take_damage(damage_done)
 
-        # Check to see if at least one hero has abilities. If no hero has abilities, print "Draw"
+             # Check to see if at least one hero has abilities. If no hero has abilities, print "Draw"
             if self.abilities and opponent.abilities == 0:
                 print("DRAW!")
-        # Start Fight!
+            # Start Fight!
             else:
-            # Opponent defeats hero
+                # Opponent defeats hero
                 if self.is_alive() == False and opponent.is_alive() == True:
                     print (f"{opponent.name} won!")
+                    self.add_death(1)
+                    opponent.add_kill(1)
                     break
                 # Hero defeats opponent
                 elif self.is_alive() == True and opponent.is_alive() == False:
                     print (f"{self.name} won!")
+                    opponent.add_death(1)
+                    self.add_kill(1)
                     break
                 # Both die
                 elif self.is_alive() == False and opponent.is_alive() == False:
                     print (f"Both heroes have died!")
+                    opponent.add_death(1)
+                    opponent.add_kill(1)
+                    self.add_death(1)
+                    self.add_kill(1)
                     break
-
-
-  # 1) else, start the fighting loop until a hero has won
-  # 2) the hero (self) and their opponent must attack each other and each must take damage from the other's attack
-  # 3) After each attack, check if either the hero (self) or the opponent is alive
-  # 4) if one of them has died, print "HeroName won!" replacing HeroName with the name of the hero, and end the fight loop
-
-
-
-
 
 if __name__ == "__main__":
     hero = Hero("Wonder Woman")
