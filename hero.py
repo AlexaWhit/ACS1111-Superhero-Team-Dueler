@@ -48,6 +48,10 @@ class Hero:
     def take_damage(self, damage):
         damage_done = damage - self.defend()
         self.current_health -= damage_done
+        if self.current_health > 0:
+            print(f"{self.name} took {damage_done} damage and has {self.current_health} health remaining!")
+        elif self.current_health <= 0:
+            print(f"{self.name} took {damage_done} damage and has died in the battle!")
         return self.current_health
 
     def is_alive(self):
@@ -59,38 +63,29 @@ class Hero:
 
     def fight(self, opponent): # Fight each hero until a victor emerges.
         fight = True 
-        hero2 = opponent
-        if hero1.abilities and hero2.abilities == 0:
-            print("DRAW!")
+        while fight == True:
+            damage_done = self.attack()
+            opponent_damage_done = opponent.attack()
+            self.take_damage(opponent_damage_done)
+            opponent.take_damage(damage_done)
+
+        # Check to see if at least one hero has abilities. If no hero has abilities, print "Draw"
+            if self.abilities and opponent.abilities == 0:
+                print("DRAW!")
         # Start Fight!
-        else:
-            while fight is True:
-                if hero1.is_alive() is False:
-                    print (f"{hero2.name} won!")
+            else:
+            # Opponent defeats hero
+                if self.is_alive() == False and opponent.is_alive() == True:
+                    print (f"{opponent.name} won!")
                     break
-                elif hero2.is_alive() is False:
-                    print (f"{hero1.name} won!")
+                # Hero defeats opponent
+                elif self.is_alive() == True and opponent.is_alive() == False:
+                    print (f"{self.name} won!")
                     break
-                else:
-                    hero1.add_ability()
-                    hero2.add_ability()
-                    hero1.attack()
-                    hero2.defend()
-                    hero2.take_damage()
-                    hero1.take_damage()
-                    hero2.is_alive()
-                    if hero2.is_alive is False:
-                        print (f"{hero1.name} won!")
-                        break
-                    hero1.is_alive()
-                    if hero1.is_alive() is False:
-                        print (f"{hero2.name} won!")
-                        break
-                    hero2.attack()
-                    hero1.defend()
-                    hero1.take_damage()
-                    hero2.take_damage()
-                    repeat
+                # Both die
+                elif self.is_alive() == False and opponent.is_alive() == False:
+                    print (f"Both heroes have died!")
+                    break
 
 
   # 1) else, start the fighting loop until a hero has won
