@@ -3,6 +3,7 @@ import random
 from timeit import repeat
 from ability import Ability
 from armor import Armor
+from weapon import Weapon
 
 class Hero:
     def __init__(self, name, starting_health=100):
@@ -35,6 +36,11 @@ class Hero:
 
     def add_armor(self, armor):
         self.armors.append(armor)
+
+    # Add Weapons
+    def add_weapon(self, weapon):
+        self.abilities.append(weapon)
+
 
     # TODO: Make sure to take into account that there may not be any armor objects in the list. 
     # Or that if a hero is dead (has no health) they should have 0 defense.
@@ -98,17 +104,21 @@ class Hero:
 
 
 if __name__ == "__main__":
-    hero1 = Hero("Wonder Woman")
-    hero2 = Hero("Dumbledore")
-    ability1 = Ability("Super Speed", 300)
-    ability2 = Ability("Super Eyes", 130)
-    ability3 = Ability("Wizard Wand", 80)
-    ability4 = Ability("Wizard Beard", 20)
-    hero1.add_ability(ability1)
-    hero1.add_ability(ability2)
-    hero2.add_ability(ability3)
-    hero2.add_ability(ability4)
-    hero1.fight(hero2)
+    hero = Hero("Wonder Woman")
+    weapon = Weapon("Lasso of Truth", 90)
+    hero.add_weapon(weapon)
+    print(hero.attack())
+    # hero1 = Hero("Wonder Woman")
+    # hero2 = Hero("Dumbledore")
+    # ability1 = Ability("Super Speed", 300)
+    # ability2 = Ability("Super Eyes", 130)
+    # ability3 = Ability("Wizard Wand", 80)
+    # ability4 = Ability("Wizard Beard", 20)
+    # hero1.add_ability(ability1)
+    # hero1.add_ability(ability2)
+    # hero2.add_ability(ability3)
+    # hero2.add_ability(ability4)
+    # hero1.fight(hero2)
     # hero1 = Hero("Wonder Woman")
     # hero2 = Hero("Dumbledore")
     # hero1.fight(hero2)
