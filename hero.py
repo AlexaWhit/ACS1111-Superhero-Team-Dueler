@@ -1,7 +1,7 @@
 from operator import truediv
 import random
 from timeit import repeat
-from ability import Ability
+from ability import Ability 
 from armor import Armor
 from weapon import Weapon
 
@@ -9,8 +9,8 @@ class Hero:
     def __init__(self, name, starting_health=100):
         # Abilities and armos don't have starting values,
         # and are set to empty lists on initialization
-        self.abilities = list()
-        self.armors = list()
+        self.abilities = []
+        self.armors = []
         self.name = name
         self.starting_health = starting_health
         self.current_health = starting_health
