@@ -2,7 +2,7 @@
 OOP Python game
 
 ## Description
-Using object-oriented programming concepts, I created a Python program that simulates a fight between superhero teams with the ability to:
+Using object-oriented programming concepts ushc as inheritance and polymorphism, I created a Python program that defines classes and instances of classess to simulate a battle between superhero teams with the ability to:
 
 - Add heroes, abilities, weapons, and armor
 - Assign numerical value to abilities, weapons, and armor
