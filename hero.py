@@ -34,7 +34,7 @@ class Hero:
         # loop through hero's abilities
         for ability in self.abilities:
             # add the damage of each attack to our running total
-            total_damage += ability.attack()
+            total_damage += int(ability.attack())
         return total_damage
 
     def add_armor(self, armor):
@@ -80,7 +80,7 @@ class Hero:
         fight = True 
         while fight == True:
             damage_done = self.attack()
-            opponent_damage_done = opponent.attack()
+            opponent_damage_done = int(opponent.attack())
             self.take_damage(opponent_damage_done)
             opponent.take_damage(damage_done)
 

@@ -35,9 +35,10 @@ class Team:
             print(f"{hero.name} Kill/Deaths:{kd}")
 
     # Reset all heroes health to starting_health
-    def revive_heroes(self, health=100):
+    def revive_heroes(self, starting_health=100):
         for hero in self.heroes:
-            hero.current_health = health
+            hero.current_health = hero.starting_health
+            print(f"{hero.name} has been revived and health has increased!")
            
 
     # Battle each team against each other

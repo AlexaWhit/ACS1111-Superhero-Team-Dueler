@@ -67,7 +67,7 @@ class Arena:
             team_deaths = 1
         print(self.team.name + " average K/D was: " + str(team_kills/team_deaths))
 
-    def show_survivors(self, team):
+    def survivors(self, team):
         survivors = 0
         for hero in team.heroes:
             if hero.deaths == 0:
