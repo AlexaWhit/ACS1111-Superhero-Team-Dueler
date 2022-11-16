@@ -38,6 +38,7 @@ class Team:
     def revive_heroes(self, health=100):
         for hero in self.heroes:
             hero.current_health = health
+           
 
     # Battle each team against each other
     def attack(self, other_team):
